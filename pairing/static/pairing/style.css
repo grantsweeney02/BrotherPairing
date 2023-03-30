@@ -1,0 +1,14 @@
+:root {
+    --orange: #FF731D;
+    --lightblue: #5F9DF5;
+    --navy: #1746A2;
+    --whiteish: #f2f2f2;
+    --black: #000000;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Abril Fatface', serif;
+    color: aquamarine;
+}

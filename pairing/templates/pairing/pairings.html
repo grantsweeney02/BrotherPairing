@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% if pairings %}
+    <h2>Current Pairings</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Pledge</th>
+                <th>Brother</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pairing in pairings %}
+            <tr>
+                <td>{{ pairing.pledge.first_name }} {{ pairing.pledge.last_name }}</td>
+                <td>{{ pairing.brother.first_name }} {{ pairing.brother.last_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No pairings found for the current week.</p>
+    {% endif %}
+</body>
+
+</html>
