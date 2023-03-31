@@ -5,7 +5,7 @@ body {
 }
 
 body {
-    background-color: #f2f2f2;
+    background-color: gold;
     font-family: Arial, sans-serif;
     font-size: 16px;
     color: #333;
@@ -19,6 +19,10 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+}
+
+img {
+    width: 150px;
 }
 
 h1 {
@@ -35,7 +39,7 @@ p {
 
 .btn {
     display: inline-block;
-    background-color: #007bff;
+    background-color: maroon;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -48,5 +52,5 @@ p {
 }
 
 .btn:hover {
-    background-color: #0062cc;
+    background-color: maroon;
 }
