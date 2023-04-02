@@ -21,6 +21,14 @@ def read_excel_file(file_path):
         data.append({'first_name': first_name, 'last_name': last_name})
     return data
 
+def show_pairings(request):
+    week_start = date.today() - timedelta(days=date.today().weekday())
+    pairings = Pairing.objects.filter(week_start=week_start)
+    if len(pairings) == 0:
+        generate_pairings
+    context = {'pairings': pairings}
+    return render(request, 'pairing/pairings.html', context)
+
 def generate_pairings(request):
 
     # Read brothers and pledges data from Excel sheets
@@ -85,6 +93,6 @@ def generate_pairings(request):
             pairings.append(pairing)
 
     # Pass the pairings to the template
-    context = {'pairings': pairings}
-    return render(request, 'pairing/pairings.html', context)
+    return pairings
+    
     

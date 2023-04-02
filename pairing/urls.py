@@ -22,5 +22,5 @@ app_name = 'pairing'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('generate_pairings/', views.generate_pairings, name='generate_pairings'),
+    path('show_pairings/', views.show_pairings, name='show_pairings'),
 ]
