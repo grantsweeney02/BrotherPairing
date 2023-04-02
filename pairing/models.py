@@ -4,6 +4,7 @@ from django.db import models
 class Brother(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=15)
     new_members = models.ManyToManyField('Pledge', related_name='pledge')
 
     def __str__(self) -> str:
@@ -12,6 +13,7 @@ class Brother(models.Model):
 class Pledge(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=15)
     brothers = models.ManyToManyField('Brother', related_name='brother')
 
     def __str__(self) -> str:

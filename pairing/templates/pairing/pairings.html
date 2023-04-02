@@ -16,15 +16,19 @@
     <table>
         <thead>
             <tr>
+                <th>Phone Number</th>
                 <th>Pledge</th>
                 <th>Brother</th>
+                <th>Phone Number</th>
             </tr>
         </thead>
         <tbody>
             {% for pairing in pairings %}
             <tr>
+                <td>{{ pairing.pledge.phone_number }}</td>
                 <td>{{ pairing.pledge.first_name }} {{ pairing.pledge.last_name }}</td>
                 <td>{{ pairing.brother.first_name }} {{ pairing.brother.last_name }}</td>
+                <td>{{ pairing.brother.phone_number }}</td>
             </tr>
             {% endfor %}
         </tbody>

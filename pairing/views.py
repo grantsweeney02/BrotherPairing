@@ -18,37 +18,39 @@ def read_excel_file(file_path):
     for row in df.values:
         first_name = row[0]
         last_name = row[1]
-        data.append({'first_name': first_name, 'last_name': last_name})
+        phone_number = row[2]
+        data.append({'first_name': first_name, 'last_name': last_name, 'phone_number': phone_number})
     return data
 
 def show_pairings(request):
     week_start = date.today() - timedelta(days=date.today().weekday())
     pairings = Pairing.objects.filter(week_start=week_start)
     if len(pairings) == 0:
-        generate_pairings
+        generate_pairings(request=request)
+    pairings = Pairing.objects.filter(week_start=week_start)
     context = {'pairings': pairings}
     return render(request, 'pairing/pairings.html', context)
 
 def generate_pairings(request):
-
     # Read brothers and pledges data from Excel sheets
     brothers_data = read_excel_file('brothers.xlsx')
     pledges_data = read_excel_file('pledges.xlsx')
-
     # Create brothers and pledges if they don't exist already
     brothers = []
     for row in brothers_data:
-        brother, created = Brother.objects.get_or_create(
+        brother,created = Brother.objects.get_or_create(
             first_name=row['first_name'],
-            last_name=row['last_name']
+            last_name=row['last_name'],
+            phone_number =row['phone_number']
         )
         brothers.append(brother)
 
     pledges = []
     for row in pledges_data:
-        pledge, created = Pledge.objects.get_or_create(
+        pledge,created = Pledge.objects.get_or_create(
             first_name=row['first_name'],
-            last_name=row['last_name']
+            last_name=row['last_name'],
+            phone_number =row['phone_number']
         )
         pledges.append(pledge)
 
@@ -64,7 +66,7 @@ def generate_pairings(request):
     # current_pairings = Pairing.objects.filter(week_start=week_start, week_end=week_end)
 
     # Pair pledges with brothers
-    print("There are ",len(brothers),"Brothers")
+    print("There are",len(brothers),"Brothers")
     i = 1
     for brother in brothers:
         print(i, brother)
@@ -91,8 +93,5 @@ def generate_pairings(request):
             pairing.save()
             print(len(available_brothers[pledge]))
             pairings.append(pairing)
-
-    # Pass the pairings to the template
-    return pairings
     
     
